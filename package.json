@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn --clear src/app.ts",
+    "dev": "tsnd --respawn --clear src/index.ts",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/app.js",
+    "start": "npm run build && node dist/index.js",
     "lint": "eslint"
   },
   "keywords": [],
@@ -14,7 +14,10 @@
   "description": "",
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@prisma/client": "^5.19.1",
+    "@types/express": "^4.17.21",
     "@types/node": "^22.5.1",
+    "@types/ws": "^8.5.12",
     "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -31,6 +34,9 @@
     "eslint": "^9.9.1"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1"
+    "dotenv": "^16.4.5",
+    "env-var": "^7.5.0",
+    "express": "^4.20.0",
+    "ws": "^8.18.0"
   }
 }
