@@ -8,7 +8,7 @@ const main = () => {
   const httpServer = createServer(server);
   initWss({ server: httpServer });
   httpServer.listen(envs.PORT_APP, () => {
-    console.log(`server running on port ${envs.PORT_APP}`);
+    console.log(`Server in http://localhost:${envs.PORT_APP}`);
   });
 };
 
