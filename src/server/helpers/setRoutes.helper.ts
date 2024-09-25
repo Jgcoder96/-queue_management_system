@@ -10,6 +10,7 @@ interface Options {
 const setRoutes = ({ app, serverRoutes }: Options): Router => {
   const router = Router();
   router.use('/tickets', serverRoutes.tickets);
+  router.use('/auth', serverRoutes.auth);
   app.use('/api', router);
   return router;
 };

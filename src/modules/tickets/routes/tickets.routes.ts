@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ticketsControllers } from '../controllers/tickets.controller';
+import { ticketsControllers } from '../controllers/tickets.controllers';
 
 export const ticketsRoutes = (): Router => {
   const router = Router();

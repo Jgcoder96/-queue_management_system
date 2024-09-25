@@ -12,3 +12,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model users {
+  user_id             String      @id @default(uuid()) 
+  name                String 
+  last_name           String
+  dni                 Int         @unique 
+  email               String      @unique 
+  hashed_password     String      
+  rol                 Roles       @default(USER)
+  is_connected        Boolean     @default(false)
+  created_at          DateTime    @default(now())
+  updated_at          DateTime?             
+  procedures          procedure[] @relation("UserProcedures")
+  staffProcedures     procedure[] @relation("StaffProcedures") 
+}
+
+enum Roles {
+  ADMIN 
+  MODERATOR
+  USER
+}
+
+model procedure {
+  procedure_id        Int         @id @default(autoincrement())
+  type                String                
+  subject             String    
+  is_attended         Boolean     @default(false) 
+  created_at          DateTime    @default(now()) 
+  finished_at         DateTime 
+  user_id             String
+  staff_id            String?     // Hacer que el campo staff_id sea opcional
+  user                users       @relation("UserProcedures", fields: [user_id], references: [user_id])
+  staff               users?      @relation("StaffProcedures", fields: [staff_id], references: [user_id])
+}
