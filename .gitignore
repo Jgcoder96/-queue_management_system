@@ -1,5 +1,5 @@
 node_modules/
-postgres-db/
+queue_database/
 pgadmin/
 dist/
 *.env

@@ -1,0 +1,200 @@
+/api/auth/users/register:
+  post:
+    tags: 
+      - auth 
+    summary: Register User 
+    description: Endpoint for registering a user in the application
+    operationId: registerUser 
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/registerUser'
+    responses:
+      '201':
+        description: Register Successful
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerSuccessful'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/zodError'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/recordAlreadyExists'
+      '500':
+        description: Internal Server Error
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/internalServerError'
+
+/api/auth/users/login:
+  post: 
+    tags:
+      - auth 
+    summary: User Login
+    description: Endpoint for user login to the application
+    operationId: loginUser
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/login'
+    responses:
+      '200':
+        description: Login Successful
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginSuccessful'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/zodError'
+      '401':
+        description: Incorrect Password
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/incorrectPassword'
+      '404':
+        description: record not found
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/recordNotFound'
+      '500':
+        description: Internal Server Error
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/internalServerError'
+
+/api/auth/users:
+  get: 
+    tags:
+      - auth 
+    summary: Get Users
+    description: Endpoint for get users 
+    operationId: getsUsers
+    responses:
+      '200':
+        description: Users Successfully Obtained
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getUsers'
+      '500': 
+        description: Internal Server Error 
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/internalServerError'
+
+  put:
+    tags:
+      - auth
+    summary: Update User
+    description: Endpoint for put user
+    operationId: putUser
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateUser'
+    responses: 
+      '200':
+        description: The user update successfully
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateSuccessful'
+      '404':
+        description: record not found
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/recordNotFound'
+      '500': 
+        description: Internal Server Error
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/internalServerError'
+
+  delete: 
+    tags:
+      - auth
+    summary: Delete User
+    description: Endpoint for delete user
+    operationId: deleteUser
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/deleteUser'
+    responses:
+      '200':
+        description: Delete User Successful
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteSuccessful'
+      '404':
+        description: record not found
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/recordNotFound'
+      '500': 
+        description: Internal Server Error
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/internalServerError'
+
+    
+/api/auth/users/{dni}:
+  get:
+    tags:
+      - auth 
+    summary: Get User by DNI
+    description: Endpoint for getting a specific user by their DNI
+    operationId: getUserByDni
+    parameters:
+      - name: dni
+        in: path
+        required: false
+        description: The DNI of the user to retrieve
+        schema:
+          type: number
+          example: 11222333
+    responses:
+      '200':
+        description: User Successfully Obtained
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getUsers'
+      '404':
+        description: record not found
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/recordNotFound'
+      '500': 
+        description: Internal Server Error
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/internalServerError'

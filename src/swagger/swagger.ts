@@ -13,7 +13,7 @@ const options: swaggerJSDoc.Options = {
       },
     },
   },
-  apis: [`${path.join(__dirname, './*.yml')}`],
+  apis: [`${path.join(__dirname, './**/*.yml')}`],
 };
 
 export const swaggerSpecification = swaggerJSDoc(options);

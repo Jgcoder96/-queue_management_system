@@ -1,0 +1,217 @@
+components:
+  schemas:
+    registerUser:
+      type: object 
+      required:
+        - name
+        - lastName
+        - dni
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          example: name
+        lastName:
+          type: string 
+          example: last name 
+        dni:
+          type: number
+          example: 25542586
+        email: 
+          type: string 
+          example: example@gmail.com
+        password: 
+          type: string
+          example: Example*010203
+        rol: 
+          type: string
+          example: 'USER'
+
+    registerSuccessful:
+      type: object
+      properties:
+        status:
+          type: boolean 
+          example: true
+        message: 
+          type: string
+          example: "register successful"
+
+    login:
+      type: object 
+      required:
+        - email 
+        - password
+      properties:
+        email:
+          type: string
+          example: example@gmail.com
+        password:
+          type: string
+          example: Example*010203
+
+    loginSuccessful:
+      type: object
+      properties:
+        status:
+          type: boolean 
+          example: true
+        message: 
+          type: string
+          example: 'login successful'
+
+    getUsers:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: 'Users successfully obtained'
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+                example: 75bf810c-6173-469c-b6e2-9351f4154d8b
+              name:
+                type: string
+                example: name
+              last_name:
+                type: string
+                example: last name
+              dni:
+                type: number
+                example: 11222333
+              email:
+                type: string
+                example: example@gmail.com
+              hashed_password:
+                type: string
+                example: $2a$10$nB0nEORNdwl9o.WQpWN5OOV0ZGgvThr5ProVImaFZ9FFuUi6CebQi
+              rol:
+                type: string
+                example: USER
+              is_connected:
+                type: boolean
+                example: false
+              created_at:
+                type: string
+                format: date-time
+                example: 2024-09-23T23:58:34.286Z
+              updated_at:
+                type: string
+                format: date-time
+                nullable: true
+                example: 2024-09-23T23:58:34.286Z
+
+    updateUser:
+      type: object 
+      required:
+        - userId
+      properties:
+        userId:
+          type: string
+          example: 75bf810c-6173-469c-b6e2-9351f4154d8b
+        name:
+          type: string
+          example: name
+        lastName:
+          type: string 
+          example: last name 
+        dni:
+          type: number
+          example: 25542586
+        email: 
+          type: string 
+          example: example@gmail.com
+        password: 
+          type: string
+          example: Example*010203
+
+    updateSuccessful:
+      type: object
+      properties:
+        status:
+          type: boolean 
+          example: true
+        message: 
+          type: string
+          example: 'the user updated successful'
+
+    deleteUser: 
+      type: object 
+      required:
+        - userId
+      properties:
+        userId:
+          type: string
+          example: 75bf810c-6173-469c-b6e2-9351f4154d8b
+
+    deleteSuccessful:
+      type: object
+      properties:
+        status:
+          type: boolean 
+          example: true
+        message: 
+          type: string
+          example: 'delete user successful'
+      
+    zodError:
+      type: object
+      properties:
+        status: 
+          type: boolean 
+          example: false
+        issues: 
+          type: array
+          items:
+            type: object 
+            properties: 
+              field: 
+                type: string 
+                example: password
+              message: 
+                type: string
+                example: required
+    recordAlreadyExists:
+      type: object
+      properties: 
+        status: 
+          type: boolean 
+          example: false
+        message: 
+          type: string
+          example: record already exists
+    recordNotFound:
+      type: object
+      properties:
+        status: 
+          type: boolean 
+          example: false
+        message: 
+          type: string 
+          example: record not exist
+    incorrectPassword:
+      type: object
+      properties:
+        status:
+          type: boolean 
+          example: false
+        message:  
+          type: string
+          example: incorrect password
+    internalServerError:
+      type: object
+      properties:
+        status:
+          type: boolean 
+          example: false
+        message:
+          type: string
+          example: internal server error
