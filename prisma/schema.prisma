@@ -35,12 +35,12 @@ enum Roles {
 }
 
 model procedure {
-  procedure_id        Int         @id @default(autoincrement())
+  procedure_id        String      @id @default(uuid()) 
   type                String                
   subject             String    
   is_attended         Boolean     @default(false) 
   created_at          DateTime    @default(now()) 
-  finished_at         DateTime 
+  finished_at         DateTime? 
   user_id             String
   staff_id            String?     // Hacer que el campo staff_id sea opcional
   user                users       @relation("UserProcedures", fields: [user_id], references: [user_id])
